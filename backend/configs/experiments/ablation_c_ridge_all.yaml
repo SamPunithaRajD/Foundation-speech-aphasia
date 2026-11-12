@@ -1,0 +1,8 @@
+# EXPERIMENT C'' — same inputs as Model C -> ridge regression (linear multimodal baseline)
+experiment: C_ridge_all
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: ["embedding:wav2vec2", language, acoustic], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: ridge, alphas: [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}

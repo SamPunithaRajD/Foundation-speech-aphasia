@@ -1,0 +1,23 @@
+# AphasiaBank (TalkBank) — English. STATUS: READY_FOR_DATA (no data present).
+# Access: TalkBank AphasiaBank membership (faculty applies; students via a sponsoring advisor).
+# Fill in every `null` below AFTER inspecting the real downloaded files. Nothing is guessed.
+name: aphasiabank-english
+version: null            # e.g. the TalkBank release / download date you used (recorded in the model card)
+root: null               # or set the APHASIA_DATA_ROOT environment variable (use a D:\ path: C:\ is too small)
+speaker: PAR             # CHAT speaker code of the participant
+keep_fillers: true
+# stem of each .cha file -> participant + session (AphasiaBank files look like <name><digits><session letter>)
+file_id_regex: '^(?P<participant>[A-Za-z]+\d+)(?P<session>[a-z]?)$'
+audio_extensions: [".wav", ".mp3", ".mp4", ".m4a", ".flac"]
+tasks: []                # optional CHAT @G task labels to restrict to, e.g. ["Cinderella"]; empty = whole session
+audio_scope: speaker_utterances   # use only time-aligned PAR utterances (removes investigator speech)
+scores:
+  file: null             # glob inside <root>/scores, e.g. "*.xlsx"
+  sheet: null            # sheet name/index containing WAB-R scores
+  participant_column: null
+  session_column: null   # set if AQ is per session/test date; otherwise one AQ per participant is required
+  aq_column: null        # the WAB-R Aphasia Quotient column
+demographics:
+  file: null
+  sheet: null
+  participant_column: null

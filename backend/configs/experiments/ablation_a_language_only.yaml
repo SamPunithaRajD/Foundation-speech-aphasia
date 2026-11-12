@@ -1,0 +1,8 @@
+# EXPERIMENT A' — clinical language features only (ridge)
+experiment: A_language_only
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: [language], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: ridge, alphas: [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}

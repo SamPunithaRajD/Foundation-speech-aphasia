@@ -1,0 +1,13 @@
+# MODEL C — proposed multimodal: wav2vec 2.0 embedding + clinical language + acoustic features
+#           -> per-group projection tokens -> Transformer encoder -> regression head
+# Sized for a small dataset: the sequence is only 4 tokens ([CLS] + 3 groups), so ONE encoder layer with d_model 32
+# is used (~35k parameters, most of them in the 768->32 embedding projection). A deeper/wider encoder is not
+# justified until validation/CV shows it helps. Compare against ablation_c_concat_mlp.yaml (same inputs, no
+# Transformer) to test whether attention-based fusion contributes anything at all.
+experiment: C_multimodal_wav2vec2
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: ["embedding:wav2vec2", language, acoustic], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: fusion_transformer, d_model: 32, n_heads: 4, n_layers: 1, ff: 64, dropout: 0.3, lr: 0.0005, weight_decay: 0.05, epochs: 300, batch_size: 16, patience: 30, loss: huber, grad_clip: 1.0}

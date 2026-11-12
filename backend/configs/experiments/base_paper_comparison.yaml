@@ -1,0 +1,12 @@
+# BASE PAPER COMPARISON — STATUS: NOT_AVAILABLE (framework only, results intentionally empty)
+# Base paper: "Conv-transformer-based Jaya Gazelle optimization for speech intelligibility with aphasia"
+#             (Rajendran & Chandrasekar). Pipeline: handcrafted acoustic features -> Conv-Transformer
+#             transducer -> Jaya Gazelle optimisation -> recognition -> DRN.
+# A fair comparison requires reimplementing that pipeline (or obtaining its outputs) on the SAME participants,
+# split (artifacts/splits/<dataset_version>_seed13.json) and target (WAB-R-derived severity score). Its
+# published numbers use a different task/target and must not be compared directly.
+# The closest runnable reference here is Model A (handcrafted features); it is NOT the base paper.
+experiment: base_paper_comparison
+status: NOT_AVAILABLE
+reference_config: configs/experiments/model_a_handcrafted.yaml
+results: {}

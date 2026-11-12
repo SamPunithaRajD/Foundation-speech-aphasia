@@ -1,0 +1,9 @@
+# EXPERIMENT B' — wav2vec 2.0 embedding -> ridge regression (linear probe)
+# Fairness baseline for Model B: tells whether the MLP head adds anything over a linear probe.
+experiment: B_wav2vec2_ridge
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: ["embedding:wav2vec2"], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: ridge, alphas: [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}

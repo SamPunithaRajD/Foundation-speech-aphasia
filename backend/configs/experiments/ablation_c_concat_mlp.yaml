@@ -1,0 +1,9 @@
+# EXPERIMENT C' — same inputs as Model C, early fusion by concatenation -> MLP (no Transformer)
+# Fairness baseline for Model C: tells whether token/attention fusion adds anything over plain concatenation.
+experiment: C_concat_mlp
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: ["embedding:wav2vec2", language, acoustic], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: mlp, hidden: [64], dropout: 0.3, lr: 0.0005, weight_decay: 0.05, epochs: 300, batch_size: 16, patience: 30, loss: huber, grad_clip: 1.0}

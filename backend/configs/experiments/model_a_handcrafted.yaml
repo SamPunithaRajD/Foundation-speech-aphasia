@@ -1,0 +1,9 @@
+# MODEL A — handcrafted baseline: acoustic + clinical language features -> ridge regression
+# alpha is selected on the validation split (and on an inner selection split inside CV folds).
+experiment: A_handcrafted
+dataset_config: configs/datasets/aphasiabank.yaml
+seed: 13
+min_participants: 20
+split: {val_fraction: 0.15, test_fraction: 0.15, seed: 13, stratify: true, cv_folds: 5}
+features: {groups: [acoustic, language], language_source: whisper, audio_scope: speaker_utterances}
+model: {type: ridge, alphas: [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}
