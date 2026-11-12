@@ -4,9 +4,9 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=3000&pause=900&color=83C9AD&center=true&vCenter=true&width=750&lines=Listen.+Analyze.+Understand.;Speech+Foundation+Models+%2B+Clinical+Language+Analysis;Explainable+AI+for+Aphasia+Research;From+Speech+Signals+to+Research+Insights.)](https://git.io/typing-svg)
 
-**An Explainable Multimodal Speech Analysis Research Prototype**
+**An Explainable Multimodal Speech Analysis Research Application**
 
-[Research Paper](#-research-publication) · [Architecture](#-system-architecture) · [Features](#-key-features) · [Installation](#-getting-started)
+[IEEE Publication](https://ieeexplore.ieee.org/document/11759575) · [Architecture](#-system-architecture) · [Features](#-key-features) · [Installation](#-getting-started)
 
 <br/>
 
@@ -20,7 +20,7 @@
 
 ---
 
-##  Overview
+## Overview
 
 **FoundationSpeech-Aphasia** is an AI-powered research application designed to explore explainable aphasia-focused speech analysis and severity prediction.
 
@@ -30,11 +30,11 @@ The application processes speech recordings, generates transcripts using Whisper
 
 The goal is to explore a more accessible, data-driven approach to speech analysis while maintaining transparency about model behaviour and limitations.
 
-##  Research Publication
+## Research Publication
 
 This project is associated with an IEEE-published research paper.
 
-**FoundationSpeech-Aphasia: A Self-Supervised Multi-Modal Framework for Explainable Aphasia Severity Prediction Using Speech Foundation Models and Clinical Language Analysis**
+### FoundationSpeech-Aphasia: A Self-Supervised Multi-Modal Framework for Explainable Aphasia Severity Prediction Using Speech Foundation Models and Clinical Language Analysis
 
 **Authors:**
 - Sam Punitha Raj D
@@ -44,15 +44,27 @@ This project is associated with an IEEE-published research paper.
 
 **Publisher:** IEEE
 
+<div align="center">
+
+<a href="https://ieeexplore.ieee.org/document/11759575">
+<img src="https://img.shields.io/badge/IEEE%20Xplore-Read%20Published%20Paper-00629B?style=for-the-badge&logo=ieee&logoColor=white" alt="Read on IEEE Xplore"/>
+</a>
+
+<br/>
+
+[**View the published paper on IEEE Xplore →**](https://ieeexplore.ieee.org/document/11759575)
+
+</div>
+
 ---
 
-##  Key Features
+## Key Features
 
 <table>
 <tr>
 <td width="50%">
 
-###  Speech Processing
+### Speech Processing
 - Audio upload and processing
 - Speech validation and preprocessing
 - Voice Activity Detection
@@ -62,7 +74,7 @@ This project is associated with an IEEE-published research paper.
 </td>
 <td width="50%">
 
-###  Foundation Models
+### Speech Foundation Models
 - wav2vec 2.0
 - HuBERT
 - WavLM
@@ -74,7 +86,7 @@ This project is associated with an IEEE-published research paper.
 <tr>
 <td width="50%">
 
-###  Clinical Language Analysis
+### Clinical Language Analysis
 - Vocabulary diversity
 - Lexical richness
 - Clause-related linguistic measures
@@ -84,7 +96,7 @@ This project is associated with an IEEE-published research paper.
 </td>
 <td width="50%">
 
-###  Explainable AI
+### Explainable AI
 - SHAP-based explanations
 - LIME-based explanations
 - Feature contribution analysis
@@ -96,7 +108,7 @@ This project is associated with an IEEE-published research paper.
 <tr>
 <td width="50%">
 
-###  Research Workspace
+### Research Workspace
 - Analysis history
 - Live backend integration
 - Analysis summaries
@@ -106,8 +118,8 @@ This project is associated with an IEEE-published research paper.
 </td>
 <td width="50%">
 
-###  Reporting
-- Automated PDF reports
+### Automated Reporting
+- PDF research reports
 - Prediction summaries
 - Speech feature summaries
 - Evaluation information
@@ -117,7 +129,7 @@ This project is associated with an IEEE-published research paper.
 </tr>
 </table>
 
-##  System Architecture
+## System Architecture
 
 The application explores a multimodal research architecture while the currently deployed experimental severity predictor uses a transcript-based pilot model.
 
@@ -153,7 +165,7 @@ flowchart TD
 |---|---|
 | Audio Input | Accepts speech recordings |
 | Preprocessing | Audio validation, normalization and voice activity analysis |
-| ASR | Whisper generates speech transcripts |
+| Automatic Speech Recognition | Whisper generates speech transcripts |
 | Feature Extraction | Acoustic and linguistic feature computation |
 | Speech Representations | Embeddings from supported speech foundation models |
 | Prediction | Experimental transcript-based severity prediction |
@@ -162,9 +174,7 @@ flowchart TD
 
 **Research distinction:** The currently deployed pilot prediction is text-based. The broader multimodal architecture is under development and should not be interpreted as a fully validated fusion model.
 
-##  Technology Stack
-
-<div align="center">
+## Technology Stack
 
 | Layer | Technologies |
 |---|---|
@@ -179,35 +189,63 @@ flowchart TD
 | Reporting | PDF generation |
 | Testing | Pytest |
 
-</div>
+## Research Model Configurations
 
-##  Research Model
+The research framework investigates three model configurations.
 
-The research direction investigates three model configurations.
+### Model A — Handcrafted Feature Baseline
 
-**Model A — Handcrafted Feature Baseline**
+```text
+Acoustic Features
+       +
+Clinical Language Features
+       ↓
+  Ridge Regression
+       ↓
+  Research Score
+```
 
-Acoustic and linguistic features are used as inputs to a regression model.
+### Model B — Speech Foundation Model
 
-**Model B — Speech Foundation Model**
+```text
+     Speech Audio
+          ↓
+      wav2vec 2.0
+          ↓
+   Speech Embeddings
+          ↓
+    Regression Head
+          ↓
+    Research Score
+```
 
-Speech representations extracted using wav2vec 2.0 are passed to a regression head.
+### Model C — Proposed Multimodal Framework
 
-**Model C — Proposed Multimodal Framework**
+```text
+Speech Audio ──→ Speech Foundation Model ──→ Speech Embeddings ──┐
+                                                                  │
+Speech Audio ──→ Acoustic Feature Extraction ─────────────────────┤
+                                                                  ├──→ Fusion
+Transcript ────→ Clinical Language Analysis ──────────────────────┘
+                                                                  ↓
+                                                             Transformer
+                                                                  ↓
+                                                            Regression
+                                                                  ↓
+                                                          Research Score
+```
 
-Speech representations, acoustic features, and clinical language features are combined through a fusion architecture.
+These configurations are experimental research directions. Their relative performance must be established through appropriate dataset-level evaluation. Model C is not automatically assumed to outperform the baselines.
 
-These configurations are experimental research directions. Their relative performance must be established through appropriate dataset-level evaluation.
+## Severity Prediction
 
-##  Severity Prediction
-
-The application explores a WAB-R-derived impairment score:
+The framework explores a WAB-R-derived impairment score:
 
 \[
 \text{Severity Score} = 100 - \text{WAB-R AQ}
 \]
 
-The transformation is intended to reverse the direction of the WAB-R AQ scale:
+The transformation reverses the direction of the WAB-R AQ scale:
 
 - Lower score: lower WAB-R-derived impairment.
 - Higher score: higher WAB-R-derived impairment.
@@ -216,28 +254,35 @@ The current deployed text-based pilot has a limited evaluation basis. Its evalua
 
 Predictions are research outputs only and are not suitable for diagnosis, treatment decisions, or independent clinical assessment.
 
-##  Application Screens
+## Application Screenshots
 
-<!-- Add your actual application screenshots to docs/assets/ and uncomment these sections. -->
+<!-- Add actual screenshots to docs/assets/ and uncomment these sections. -->
 
 <!--
 <div align="center">
-<img src="docs/assets/dashboard.png" width="90%" alt="Research Dashboard"/>
-<br/><em>Research Dashboard</em>
+<img src="docs/assets/dashboard.png" width="90%" alt="FoundationSpeech-Aphasia Dashboard"/>
+<br/>
+<strong>Research Dashboard</strong>
 </div>
 
+<br/>
+
 <div align="center">
-<img src="docs/assets/speech-analysis.png" width="90%" alt="Speech Analysis"/>
-<br/><em>Speech Analysis and Experimental Prediction</em>
+<img src="docs/assets/speech-analysis.png" width="90%" alt="Speech Analysis Interface"/>
+<br/>
+<strong>Speech Analysis and Experimental Prediction</strong>
 </div>
+
+<br/>
 
 <div align="center">
 <img src="docs/assets/report.png" width="90%" alt="Research Report"/>
-<br/><em>Automated Research Report</em>
+<br/>
+<strong>Automated Research Report</strong>
 </div>
 -->
 
-##  Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -246,15 +291,15 @@ Predictions are research outputs only and are not suitable for diagnosis, treatm
 - Git
 - Sufficient disk space for speech models and dependencies
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/FoundationSpeech-Aphasia.git
+git clone https://github.com/SamPunithaRajD/Foundation-speech-aphasia.git
 
-cd FoundationSpeech-Aphasia
+cd Foundation-speech-aphasia
 ```
 
-### 2. Configure the backend
+### 2. Configure the Backend
 
 ```bash
 cd backend
@@ -262,7 +307,7 @@ cd backend
 python -m venv .venv
 ```
 
-Activate the environment:
+Activate the virtual environment.
 
 **Windows**
 
@@ -276,19 +321,19 @@ Activate the environment:
 source .venv/bin/activate
 ```
 
-Install dependencies:
+Install backend dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Configure environment variables using the provided `.env.example` file.
+Configure the environment variables using the provided `.env.example` file.
 
 Start the backend using the command documented in `backend/README.md`.
 
-### 3. Configure the frontend
+### 3. Configure the Frontend
 
-Open another terminal:
+Open a separate terminal:
 
 ```bash
 cd frontend
@@ -298,16 +343,14 @@ npm install
 npm run dev
 ```
 
-Use the frontend URL displayed by Vite in your terminal.
+Open the local frontend URL displayed by Vite in your terminal.
 
-> Check the backend and frontend README files for project-specific configuration and startup commands.
+> Refer to the backend and frontend README files for project-specific configuration and startup commands.
 
----
-
-##  Project Structure
+## Project Structure
 
 ```text
-FoundationSpeech-Aphasia/
+Foundation-speech-aphasia/
 │
 ├── backend/
 │   ├── app/
@@ -342,11 +385,11 @@ FoundationSpeech-Aphasia/
 └── README.md
 ```
 
-*The structure above describes the main application areas; individual files may vary as development progresses.*
+*The structure illustrates the main application areas; individual files may vary as development progresses.*
 
-##  Research Integrity & Limitations
+## Research Integrity & Limitations
 
-This project is an experimental research prototype.
+FoundationSpeech-Aphasia is an experimental research prototype.
 
 - It is not a certified medical device.
 - Its predictions are not a diagnosis.
@@ -356,9 +399,9 @@ This project is an experimental research prototype.
 - Model performance and explainability must be interpreted within their evaluation limitations.
 - Predictions should not replace assessment by qualified speech-language professionals.
 
-Patient recordings, transcripts, credentials, and restricted research datasets must not be committed to this repository.
+Patient recordings, identifiable transcripts, credentials, and restricted research datasets must not be committed to this repository.
 
-##  Future Research Directions
+## Future Research Directions
 
 - Larger and more diverse aphasia datasets.
 - Improved validation using paired human and Whisper transcripts.
@@ -369,26 +412,26 @@ Patient recordings, transcripts, credentials, and restricted research datasets m
 - Further experimentation with speech foundation models.
 - Research collaboration and reproducibility.
 
-##  Contributing
+## Contributing
 
 Contributions, research discussions, and suggestions are welcome.
 
-For substantial changes:
+To contribute:
 
 1. Fork the repository.
 2. Create a feature branch.
 3. Implement and test your changes.
-4. Submit a pull request describing the modifications.
+4. Submit a pull request describing your modifications.
 
 Please do not contribute patient-identifiable data or unauthorized clinical datasets.
 
-##  Acknowledgements
+## Acknowledgements
 
 We acknowledge the researchers and organizations contributing to open speech research, speech foundation models, and aphasia research resources.
 
-##  License
+## License
 
-Add the appropriate license before redistributing this project. Until a license is added, all rights remain with the respective copyright holders.
+Add an appropriate open-source license before redistributing this project. Until a license is added, all rights remain with the respective copyright holders.
 
 ---
 
@@ -397,6 +440,14 @@ Add the appropriate license before redistributing this project. Until a license 
 ### Building Explainable AI for Speech Research
 
 *From speech signals to interpretable research insights.*
+
+<br/>
+
+[![IEEE Xplore](https://img.shields.io/badge/Research%20Publication-IEEE%20Xplore-00629B?style=for-the-badge&logo=ieee&logoColor=white)](https://ieeexplore.ieee.org/document/11759575)
+
+<br/>
+
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Foundation--speech--aphasia-181717?style=for-the-badge&logo=github)](https://github.com/SamPunithaRajD/Foundation-speech-aphasia)
 
 <br/>
 
